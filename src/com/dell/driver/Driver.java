@@ -14,6 +14,7 @@ public class Driver {
 			"\nPrease q to quit application" ;
 
 	public static void main(String[] args) {
+		try {
 	
 		System.out.println("This service was created by Mark O Donoghue "+
 		"/n This service allows a user to add a file search for files and delete files");		
@@ -46,21 +47,20 @@ public class Driver {
 			else if (userOption.equals("c")) {
 				System.out.println("Please enter the name of the file you wish to Delete");
 			    String fileName = userInput.nextLine();
-			    System.out.println(file.deleteFile(fileName));
+			    int deletion =file.deleteFile(fileName);
+			    if (deletion > 0) {
+			    	System.out.println("File: " + fileName + " was successfully deleted");
+			    }
+			    
+			    else{
+			    	System.out.println("File: " + fileName + " is not a valid file name please try again with a valid file name");
+			    }
 				userOption = null;
 			}
 			
 			else if (userOption.equals("q")) {
 				System.out.println("You have chosen to close the application");
-			    String fileName = userInput.nextLine();
-			    int validFile = file.deleteFile(fileName);
-			    if (validFile <= 0) {
-			    System.out.println("File " + fileName + " removed  from system");
-			    }
-			    else {
-			    System.out.println("File " + fileName + " was not found whithin our system");
-			    }
-				userOption = null;
+				break;
 			}
 			
 			else {
@@ -71,6 +71,11 @@ public class Driver {
 		}
 		
 		System.out.println("Thank you for using the application for more information on the service contact developer Mark O Donoghue");
+	}
+	catch(Exception e) {
+		System.out.println("An issue occured while using the application");
+	}
+		
 	}
 
 }

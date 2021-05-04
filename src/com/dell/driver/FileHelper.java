@@ -34,7 +34,7 @@ public class FileHelper {
 		output = new BufferedWriter(new FileWriter(userFile,true));
 		output.append(fileName + "\n");
 		output.close();
-		return "File successfully added to system";
+		return "File: " + fileName + " was successfully added to system";
 		}
 		
 		catch(Exception e) {
