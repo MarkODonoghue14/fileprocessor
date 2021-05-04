@@ -23,6 +23,10 @@ public class FileHelper {
 	
 	BufferedReader reader;
 	
+	Algorithms algorithms = new Algorithms();
+	
+	
+	
 	
 	public String addFile(String fileName) {
 		
@@ -40,17 +44,19 @@ public class FileHelper {
 	}
 	
 	
-	public String deleteFile(String fileName) {
+	public int deleteFile(String fileName) {
 		try {
-			 //Reading File Content and storing it to a StringBuilder variable ( skips lineToRemove)
+			int count = 0;
 		    StringBuilder sb = new StringBuilder();
 		    File file = new File(userFile);
 		    try (Scanner sc = new Scanner(file)) {
 		        String currentLine;
 		        while(sc.hasNext()){
 		            currentLine = sc.nextLine();
-		            if(currentLine.equals(fileName)){
-		                continue; //skips lineToRemove
+		            if(currentLine.toUpperCase().equals(fileName.toUpperCase()))
+		            {
+		            	count++;
+		                continue; 
 		            }
 		            sb.append(currentLine).append("\n");
 		        }
@@ -58,15 +64,15 @@ public class FileHelper {
 		    BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
 		    writer.append(sb.toString());
 		    writer.close();
-		    return "File " + fileName + " removed  from system";
+		    return count;
 		}
 		catch(Exception e) {
-			
+			System.out.println("The system is currently experiencing problems please try again later");		
 		}
-		return "There was an issue deleting the file";
+		return 0;
 	}
 	
-	public ArrayList<String> getAllFiles() {
+	public String getFile(String fileName) {
 		try {
 			reader = new BufferedReader (new FileReader(userFile)); 
 			String line = reader.readLine();
@@ -75,9 +81,11 @@ public class FileHelper {
 				allFiles.add(line);
 				line = reader.readLine();
 			}
-			reader.close();	
-			 Collections.sort(allFiles);
-			 return allFiles;
+			reader.close();
+			 algorithms.inserstionSwap(allFiles);
+			 printAllFiles(allFiles);
+			 String userMessage = algorithms.binarySearch(allFiles, fileName);
+			 return userMessage;
 		}
 		catch(Exception e) {
 			System.out.println("The system is currently experiencing problems please try again later");

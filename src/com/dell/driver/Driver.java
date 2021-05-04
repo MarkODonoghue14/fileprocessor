@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class Driver {
 	
 	
-	static String menu = "\nPlease select an option from our list. The options being 1, 2 or 3" +
+	static String menu = "\nPlease select an option from our list. The options being a, b or c" +
 		    "\na. Add a file to our repository " +
-			"\nb.  Search a file from our repository "+
+			"\nb. Search a file from our repository "+
 		    "\nc. Delete a file from our repository"+
 			"\nPrease q to quit application" ;
 
@@ -36,9 +36,10 @@ public class Driver {
 			}
 			
 			else if (userOption.equals("b")) {
-				System.out.println("Returning a sorted list of all files");
-				ArrayList <String> allFiles = file.getAllFiles();	
-				file.printAllFiles(allFiles);
+				System.out.println("Please enter the name of the file that you wish to search for");
+				String fileName = userInput.nextLine();
+				String userMessage = file.getFile(fileName);
+				System.out.println(userMessage);
 				userOption = null;
 			}
 			
@@ -52,18 +53,24 @@ public class Driver {
 			else if (userOption.equals("q")) {
 				System.out.println("You have chosen to close the application");
 			    String fileName = userInput.nextLine();
-			    System.out.println(file.deleteFile(fileName));
+			    int validFile = file.deleteFile(fileName);
+			    if (validFile <= 0) {
+			    System.out.println("File " + fileName + " removed  from system");
+			    }
+			    else {
+			    System.out.println("File " + fileName + " was not found whithin our system");
+			    }
 				userOption = null;
 			}
 			
 			else {
-				System.out.println("Thank you for using the application for more information on the service contact developer Mark O Donoghue");
+				System.out.println("Sorry this was not a valid option please look at the options provided carefully");
 				userOption = null;
 			}
 			
 		}
 		
-		System.out.println("Thank you for using the application");
+		System.out.println("Thank you for using the application for more information on the service contact developer Mark O Donoghue");
 	}
 
 }
