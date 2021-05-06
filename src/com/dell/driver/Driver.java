@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class Driver {
 	
-	static String MainMenu = "\n Please select an option from below being l or m" +
+	static String mainMenu = "\nPlease select an option from below being l or m" +
 			"\nl. List all files in the repository " +
 			"\nm. add, search for or delete file" +
 			"\nq. To quit the application";
 	
 	
-	static String menu = "\nPlease select an option from our list. The options being a, b or c" +
+	static String menu = "\nPlease select an option from our list. The options being a, b, c or r" +
 		    "\na. Add a file to our repository " +
 			"\nb. Search a file from our repository "+
 		    "\nc. Delete a file from our repository"+
@@ -22,13 +22,13 @@ public class Driver {
 		try {
 	
 		System.out.println("This service(File Processor) was created by Mark O Donoghue "+
-		"/n This service allows a user to add a file search for files and delete files");		
-		String userOption = null;
+		"\n This service allows a user to add a file search for files and delete files");		
+		String userOption = "";
 		 FileHelper file = new FileHelper();
 		 
-		while(userOption != "q") {
+		while(!userOption.equals("q")) {
 			
-			 System.out.println(menu);
+			 System.out.println(mainMenu);
 			 Scanner userInputMenu = new Scanner(System.in);
 			
 			 userOption = userInputMenu.nextLine();
@@ -36,17 +36,18 @@ public class Driver {
 			 if (userOption.equals("l")) {
                     System.out.println("Getting all the files stored in the service: " );					
 				    file.getAllFile();
-				    userOption = null;
+				    userOption = "";
 				}
 			 
-			 else if (userOption == "q") {
+			 else if (userOption.equals("q")) {
 					System.out.println("You have chosen to close the application");
 					break;
 			 }
 			 
-			 else if (userOption == "m") {
+			 else if (userOption.equals("m")) {
+				 userOption = "";
 		
-		while(userOption != "r")
+		while(!userOption.equals("r"))
 		{
 			
 			 System.out.println(menu);
@@ -58,7 +59,7 @@ public class Driver {
 				System.out.println("Please enter the name of the file you wish to Add");
 			    String fileName = userInput.nextLine();
 			    System.out.println(file.addFile(fileName));
-			    userOption = null;
+			    userOption = "";
 			}
 			
 			else if (userOption.equals("b")) {
@@ -66,7 +67,7 @@ public class Driver {
 				String fileName = userInput.nextLine();
 				String userMessage = file.getFile(fileName);
 				System.out.println(userMessage);
-				userOption = null;
+				userOption = "";
 			}
 			
 			else if (userOption.equals("c")) {
@@ -80,24 +81,27 @@ public class Driver {
 			    else{
 			    	System.out.println("File: " + fileName + " is not a valid file name please try again with a valid file name");
 			    }
-				userOption = null;
+				userOption = "";
 			}
 			
-			else if (userOption.equals("q")) {
-				System.out.println("You have chosen to close the application");
+			else if (userOption.equals("r")) {
+				System.out.println("You have chosen to return to the main menu");
 				break;
 			}
 			
 			else {
 				System.out.println("Sorry this was not a valid option please look at the options provided carefully");
-				userOption = null;
+				userOption = "";
 			}
 		}
-			
+			 }
+		
+		else {
+			System.out.println("Sorry this was not a valid option please look at the options provided carefully");
+			userOption = "";
 		}
-		System.out.println("Returning to main menu");
-		System.out.println("Thank you for using the application for more information on the service contact developer Mark O Donoghue");
 	}
+		System.out.println("Thank you for using the application for more information on the service contact developer Mark O Donoghue");
 		}
 	catch(Exception e) {
 		System.out.println("An issue occured while using the application");

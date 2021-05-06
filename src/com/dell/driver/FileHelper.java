@@ -83,7 +83,6 @@ public class FileHelper {
 			}
 			reader.close();
 			 algorithms.inserstionSwap(allFiles);
-			 printAllFiles(allFiles);
 			 String userMessage = algorithms.binarySearch(allFiles, fileName);
 			 return userMessage;
 		}
@@ -118,4 +117,5 @@ public class FileHelper {
 			System.out.println("The system is currently experiencing problems please try again later");
 		}
 		
+}
 }
