@@ -99,5 +99,23 @@ public class FileHelper {
 	            System.out.println(file);
 	        }
 	}
+	
+	public void getAllFile() {
+		try {
+			reader = new BufferedReader (new FileReader(userFile)); 
+			String line = reader.readLine();
+			ArrayList<String> allFiles = new ArrayList<String>();
+			while(line != null) {
+				allFiles.add(line);
+				line = reader.readLine();
+			}
+			reader.close();
+			 algorithms.inserstionSwap(allFiles);
+			 printAllFiles(allFiles);
+			 
+		}
+		catch (Exception e) {
+			System.out.println("The system is currently experiencing problems please try again later");
+		}
 		
 }

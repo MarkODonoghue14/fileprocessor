@@ -6,22 +6,47 @@ import java.util.Scanner;
 
 public class Driver {
 	
+	static String MainMenu = "\n Please select an option from below being l or m" +
+			"\nl. List all files in the repository " +
+			"\nm. add, search for or delete file" +
+			"\nq. To quit the application";
+	
 	
 	static String menu = "\nPlease select an option from our list. The options being a, b or c" +
 		    "\na. Add a file to our repository " +
 			"\nb. Search a file from our repository "+
 		    "\nc. Delete a file from our repository"+
-			"\nPrease q to quit application" ;
+			"\nr, to return to main menu" ;
 
 	public static void main(String[] args) {
 		try {
 	
-		System.out.println("This service was created by Mark O Donoghue "+
+		System.out.println("This service(File Processor) was created by Mark O Donoghue "+
 		"/n This service allows a user to add a file search for files and delete files");		
 		String userOption = null;
 		 FileHelper file = new FileHelper();
+		 
+		while(userOption != "q") {
+			
+			 System.out.println(menu);
+			 Scanner userInputMenu = new Scanner(System.in);
+			
+			 userOption = userInputMenu.nextLine();
+			 
+			 if (userOption.equals("l")) {
+                    System.out.println("Getting all the files stored in the service: " );					
+				    file.getAllFile();
+				    userOption = null;
+				}
+			 
+			 else if (userOption == "q") {
+					System.out.println("You have chosen to close the application");
+					break;
+			 }
+			 
+			 else if (userOption == "m") {
 		
-		while(userOption != "q")
+		while(userOption != "r")
 		{
 			
 			 System.out.println(menu);
@@ -67,11 +92,13 @@ public class Driver {
 				System.out.println("Sorry this was not a valid option please look at the options provided carefully");
 				userOption = null;
 			}
+		}
 			
 		}
-		
+		System.out.println("Returning to main menu");
 		System.out.println("Thank you for using the application for more information on the service contact developer Mark O Donoghue");
 	}
+		}
 	catch(Exception e) {
 		System.out.println("An issue occured while using the application");
 	}
