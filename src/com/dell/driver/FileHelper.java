@@ -53,7 +53,7 @@ public class FileHelper {
 		        String currentLine;
 		        while(sc.hasNext()){
 		            currentLine = sc.nextLine();
-		            if(currentLine.toUpperCase().equals(fileName.toUpperCase()))
+		            if(currentLine.equals(fileName))
 		            {
 		            	count++;
 		                continue; 
