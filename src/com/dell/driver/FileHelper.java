@@ -82,7 +82,7 @@ public class FileHelper {
 				line = reader.readLine();
 			}
 			reader.close();
-			 algorithms.inserstionSwap(allFiles);
+			 algorithms.insertionSort(allFiles);
 			 String userMessage = algorithms.binarySearch(allFiles, fileName);
 			 return userMessage;
 		}
@@ -109,7 +109,7 @@ public class FileHelper {
 				line = reader.readLine();
 			}
 			reader.close();
-			 algorithms.inserstionSwap(allFiles);
+			 algorithms.insertionSort(allFiles);
 			 printAllFiles(allFiles);
 			 
 		}

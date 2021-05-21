@@ -24,6 +24,25 @@ public class Algorithms {
 		}
 		return unsortedArray;
 	}
+	
+	public ArrayList<String> insertionSort(ArrayList<String> unsortedArray) {
+		try {
+	       int size = unsortedArray.size();  
+	        for (int j = 1; j < size; j++) {  
+	            String key = unsortedArray.get(j);  
+	            int i = j-1;  
+	            while ( (i >= 0) && ( unsortedArray.get(i).compareToIgnoreCase(key) > 0 ) ) {  
+	                unsortedArray.set(i+1,unsortedArray.get(i));  
+	                i--;  
+	            }  
+	            unsortedArray.set(i+1 ,key);  
+	        }
+			return unsortedArray;  
+		}catch(Exception e) {
+			System.out.println("An error occured while sorting the files");
+		}
+		return unsortedArray;
+	}
 
 	public String binarySearch(ArrayList<String> sortedArray, String fileName) {
 		try {
